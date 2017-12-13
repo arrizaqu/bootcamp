@@ -1,4 +1,4 @@
-package Logic_1;
+package logic_1;
 
 public class Soal4 {
 
