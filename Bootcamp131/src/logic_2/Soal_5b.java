@@ -14,7 +14,7 @@ public class Soal_5b {
 		this.baris = n;
 		this.kolom = n;
 		this.data = new String[this.baris][this.kolom];
-		int[] deret = DeretAngka.getDeret_2(1, n);
+		int[] deret = DeretAngka.getDeret_2(1, n, false);
 		System.out.println(Arrays.toString(deret));
 		
 		for(int i = 0; i < this.baris; i++){

@@ -1,10 +1,10 @@
-package logic_2;
+package logic_3;
 
 import java.util.Arrays;
 
 import utilize.DeretAngka;
 
-public class Soal_3b {
+public class Soal_10b {
 
 	String[][] data;
 	int kolom;
@@ -14,17 +14,18 @@ public class Soal_3b {
 		this.baris = n;
 		this.kolom = n;
 		this.data = new String[this.baris][this.kolom];
-		int[] deret = DeretAngka.getDeret_2(0, n, false);
-		int[] deret2 = DeretAngka.getDeret_1(n, false);
-		System.out.println(Arrays.toString(deret2));
+		String[] deret = DeretAngka.genapGanjilFibonachi(n);
 		System.out.println(Arrays.toString(deret));
 		
 		for(int i = 0; i < this.baris; i++){
 			for(int j = 0; j < this.kolom; j++){
-				if(i == j){
-					data[i][j] = deret2[i]+"";
-				}else if(i + j == n - 1){
-					data[i][j] = deret[n - 1 - j]+"";
+				//arsiran atas
+				if(i <= j && i + j <= n -1){
+					data[i][j] = deret[i]+"";
+				} else if(i >= j && i + j >= n - 1){
+					data[i][j] = deret[i]+"";
+				} else {
+					data[i][j] = deret[j]+"";
 				}
 			}
 		}
@@ -40,8 +41,8 @@ public class Soal_3b {
 	}
 	
 	public static void main(String[] args){
-		Soal_3b jawab = new Soal_3b();
-		jawab.setDataArray(9);
+		Soal_10b jawab = new Soal_10b();
+		jawab.setDataArray(11);
 		jawab.showData();
 	}
 }
