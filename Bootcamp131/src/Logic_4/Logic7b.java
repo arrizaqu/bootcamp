@@ -19,7 +19,7 @@ public class Logic7b {
 		for(int i  = 0; i < this.baris; i++){
 			int a = 0;
 			int[] dataArray = DeretAngka.getDeret_2(1, loop , true);
-			//System.out.println(Arrays.toString(dataArray));
+			System.out.println(Arrays.toString(dataArray));
 			for(int j = 0; j < this.kolom; j++){
 				//do logic
 				if(j - i >= 0 && i + j <= (n - 1)*2){
