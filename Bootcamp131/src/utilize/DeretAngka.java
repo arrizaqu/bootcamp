@@ -64,6 +64,8 @@ public class DeretAngka {
 		return data;
 	}
 	
+	
+	
 	public static int[] triFibonachi(int n, boolean reverse){
 		int[] data = new int[n];
 		int[] dataTrue = new int[n];
