@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import utilize.DeretAngka;
 
-public class Logic_1 {
+public class Logic_3 {
 	
 	int baris = 0;
 	int kolom = 0;
@@ -32,13 +32,15 @@ public class Logic_1 {
 		int addBangun = 0;
 		for(int bangun = 0; bangun < n; bangun++){
 			int angka = 0;
+			int angka2 = 1;
 			for(int i  = 0; i < this.baris; i++){
 				for(int j = 0; j < this.kolom; j++){
 					if(i + j >= n -1 && -i +j <= n - 1 && i <= n - 1 && j <= this.kolom / 2 - 1){
 						if(bangun % 2 == 0){
 							data[i+ addBangun][j] = dataFib[angka++] + "";
 						} else {
-							data[i+ addBangun][j + (this.kolom / 2)] = dataFib[angka++] + "";
+							data[i+ addBangun][j + (this.kolom / 2)] = angka2 + "";
+							angka2 = angka2 + 2;
 						}
 						
 					}
@@ -60,7 +62,7 @@ public class Logic_1 {
 	}
 	
 	public static void main(String[] args){
-		Logic_1 template = new Logic_1();
+		Logic_3 template = new Logic_3();
 		template.setData(3);
 		template.showData();
 	}

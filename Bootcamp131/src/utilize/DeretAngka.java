@@ -1,6 +1,7 @@
 package utilize;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class DeretAngka {
 
@@ -16,6 +17,19 @@ public class DeretAngka {
 				a = a - 1;
 			else
 				a = a + 1;
+		}
+		
+		return data;
+	}
+	
+	//1, 3, 5 dst..
+	public static int[] getAngkaKebalik(int start, int penambahan, int n){
+		int[] data = new int[n];
+		
+		int hasil = start;
+		for(int i = 0; i < n; i++){
+			data[i] = hasil;
+			hasil = hasil + penambahan;
 		}
 		
 		return data;
@@ -142,11 +156,37 @@ public class DeretAngka {
 		return data;
 	}
 	
-	public static void main(String args[]){
-		//String[] data = DeretAngka.genapGanjilFibonachi(9);
+	//n =3, =>output : 3,2,1,2,3
+	public static int[] getIncrementABC(int n){
+		//menghitung nilai panjang array
+		int maxArray = -1;
+		for(int i = 0; i < n; i++){
+			maxArray = maxArray + 2;
+		}
 		
-		//System.out.println(Arrays.toString(data));
-		DeretAngka.getChar(5);
+		int[] data = new int[maxArray];
+		//set data
+		int hasil = n;
+		for(int i = 0; i < data.length; i++){
+			data[i] = hasil;
+			if(i < data.length / 2)
+				hasil = hasil - 1;
+			else
+				hasil = hasil + 1;	
+		}
+		
+		return data;
+	}
+	
+	public static void main(String args[]){
+		int[] data = DeretAngka.getIncrementABC(3);
+		
+		System.out.println(Arrays.toString(data));
+		double datas = Math.pow(4, 3);
+		System.out.println((int)datas);
+		//DeretAngka.getChar(5);
+		
+		System.out.println("hasil : "+ (8/2 + 1));
 	}
 	
 }

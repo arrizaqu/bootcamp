@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import utilize.DeretAngka;
 
-public class Logic_1 {
+public class Logic_2 {
 	
 	int baris = 0;
 	int kolom = 0;
@@ -60,7 +60,7 @@ public class Logic_1 {
 	}
 	
 	public static void main(String[] args){
-		Logic_1 template = new Logic_1();
+		Logic_2 template = new Logic_2();
 		template.setData(3);
 		template.showData();
 	}
