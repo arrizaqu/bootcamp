@@ -1,0 +1,191 @@
+# SQL ORACLE
+	* INSTALLATION
+	* Unlock User HR
+	* DML
+	* DDL
+## INSTALLATION
+	1. install oracle => sqlplus (administrasi tool standart)
+	2. extract sqldeveloper 
+	3. JDK PATH config
+	
+## Unlock User HR
+	* alter user hr identified by hr account unlock;
+	* connect hr/hr
+	* open connection sql developer
+	
+## DML -> CRUD 
+	* Create 	-> INSERT
+	* Read 		-> SELECT
+	* Update 	-> UPDATE
+	* Delete 	-> DELETE
+	
+## DDL -> CRUD
+	* CREATE 	-> CREATE 
+	* READ		-> SHOW / DESCRIBE
+	* UPDATE	-> ALTER
+	* DELETE	-> DROP
+	
+## SELECTING DATA
+### ALL FIELD
+### Define Spesific Column
+	SELECT 
+	  EMP.LAST_NAME AS NAMA_BELAKANG, 
+	  EMP.EMAIL, 
+	  EMP.PHONE_NUMBER NOMOR_TELP
+	FROM EMPLOYEES EMP;
+### FROM DUAL
+	SELECT 'HELLO WORLD' FROM DUAL;
+	SELECT 
+	  1+1 AS JUMLAH, 
+	  2 + 2 * 10 AS KALI, 
+	  CURRENT_DATE AS TANGGAL_SEKARANG
+	FROM DUAL;
+	
+### Conditon with Equal
+	SELECT * FROM employees
+	where first_name = 'Diana' OR first_name = 'Lex'
+
+	SELECT * FROM employees
+	where first_name = 'Diana' OR 1 = 1;
+
+	SELECT * FROM employees
+	where upper(first_name) = upper('diana');
+	select lower('heLlo WoRlD') from dual;
+
+### Condtion with like
+	select * from employees
+	where first_name like '%s'
+
+	select * from employees
+	where first_name like 'S%'
+
+	select * from employees
+	where upper(first_name) like upper('%s%')
+
+### Condtion with between
+	select * from employees 
+	where salary between 8200 and 10000
+
+	select * from employees 
+	where salary <= 10000 and salary >= 8200
+
+	select * from employees
+	where hire_date = to_date('08-20-2005', 'mm-dd-yyyy');
+
+	
+## Group Function
+	-- GROUP FUNCTION
+	-- 1. COUNT
+	-- 2. MAX
+	-- 3. MIN
+	-- 4. AVG
+	
+### EXAMPLE 
+	SELECT FIRST_NAME, SALARY, DEPARTMENT_ID FROM EMPLOYEES;
+	--UNTUK MENGHITUNG JUMLAH RECORD EMPLOYEES
+	SELECT COUNT(*) FROM EMPLOYEES;
+	SELECT COUNT(DEPARTMENT_ID) FROM EMPLOYEES;
+	--UNTUK MENGHITUNG GAJI TERTINGGI
+	SELECT MAX(SALARY) FROM EMPLOYEES;
+	-- MENGHITUNG GAJI TERKECIL
+	SELECT MIN(SALARY) FROM EMPLOYEES;
+	-- MENGHITUNG RATA RATA GAJI
+	SELECT ROUND(AVG(SALARY), 2) FROM EMPLOYEES;
+	-- MENGHITUNG JUMLAH TOTAL
+	SELECT SUM(SALARY) FROM EMPLOYEES;
+	
+## GROUP FUNCTION, GROUP BY, HAVING  
+	- MENGKATAGORIKAN FUNGSI GROUP FUNCTION
+
+### STEP 
+	1. GROUP FUNCTION UNTUK MENGKALKUKASI SEMUA KUMPULAN DATA RECORD
+	2. GROUP BY UNTUK MENG-KALKULASI SEMUA KUMPULAN DATA BERDASARKAN KATEGORI TERTENTU
+	3. HAVING UNTUK MEN-FILTER DATA HASIL GROUP FUNCTION DALAM GROUP BY
+		
+## SubQuery
+### EXAMPLE 1
+	SELECT FIRST_NAME, LAST_NAME
+	FROM EMPLOYEES 
+	WHERE SALARY >= (SELECT SALARY FROM EMPLOYEES WHERE FIRST_NAME = 'Luis');
+### EXAMPLE 2
+	SELECT 
+	  FIRST_NAME, 
+	  LAST_NAME,
+	  SALARY
+	FROM EMPLOYEES 
+	WHERE SALARY >= ALL(SELECT SALARY FROM EMPLOYEES WHERE FIRST_NAME = 'Alexander');
+
+## JOIN
+	1. inner join		=> join
+	2. left outer join	=> left join
+	3. right outer join	=> right join
+	5. self JOIN		=> consep
+	4. crossjoin		=> cross join
+	
+## Inner JOIN	
+	SELECT 
+	  FIRST_NAME,
+	  LAST_NAME,
+	  DEPARTMENT_ID
+	FROM EMPLOYEES;
+
+	SELECT 
+	  EMP.FIRST_NAME, 
+	  DEPT.DEPARTMENT_NAME,
+	  JOBS.JOB_TITLE,
+	  EMP.SALARY,
+	  LOC.CITY
+	FROM EMPLOYEES EMP
+	INNER JOIN DEPARTMENTS DEPT
+	ON EMP.DEPARTMENT_ID = DEPT.DEPARTMENT_ID
+	INNER JOIN LOCATIONS LOC
+	ON DEPT.LOCATION_ID = LOC.LOCATION_ID
+	INNER JOIN JOBS 
+	ON EMP.JOB_ID = JOBS.JOB_ID 
+
+	SELECT * FROM DEPARTMENTS;
+	SELECT * FROM LOCATIONS;
+	SELECT * FROM JOBS;
+
+## LEFT OUTER JOIN 
+	SELECT 
+	  EMP.FIRST_NAME, 
+	  EMP.LAST_NAME,
+	  EMP.DEPARTMENT_ID,
+	  DEPT.DEPARTMENT_NAME
+	FROM EMPLOYEES EMP
+	LEFT OUTER JOIN DEPARTMENTS DEPT
+	ON 
+	  EMP.DEPARTMENT_ID = DEPT.DEPARTMENT_ID
+
+## RIGHT OUTER JOIN 
+	SELECT 
+	  EMP.FIRST_NAME, 
+	  EMP.LAST_NAME,
+	  EMP.DEPARTMENT_ID,
+	  DEPT.DEPARTMENT_ID,
+	  DEPT.DEPARTMENT_NAME
+	FROM EMPLOYEES EMP
+	RIGHT OUTER JOIN DEPARTMENTS DEPT
+	ON 
+	  EMP.DEPARTMENT_ID = DEPT.DEPARTMENT_ID
+
+## SELF JOIN
+	SELECT 
+	  EMP.FIRST_NAME,
+	  EMP.MANAGER_ID,
+	  MNG.MANAGER_ID,
+	  MNG.FIRST_NAME
+	FROM EMPLOYEES EMP
+	LEFT JOIN EMPLOYEES MNG
+	ON EMP.MANAGER_ID = MNG.EMPLOYEE_ID
+	SELECT * FROM EMPLOYEES;
+	
+## CORSS JOIN 
+	SELECT 
+	  EMP.FIRST_NAME,
+	  EMP.DEPARTMENT_ID,
+	  DEPT.DEPARTMENT_ID,
+	  DEPT.DEPARTMENT_NAME
+	FROM EMPLOYEES EMP
+	CROSS JOIN DEPARTMENTS DEPT
