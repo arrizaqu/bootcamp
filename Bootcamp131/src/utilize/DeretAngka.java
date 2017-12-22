@@ -131,6 +131,30 @@ public class DeretAngka {
 		};
 	}
 	
+	//1, 3, 6, 10, 15... dst => hasil akhir
+	public static int getTriAngularResult(int n){
+		int result = 0;
+		for(int i = 1; i <= n; i++){
+			result = result + i;
+		}
+		
+		return result;
+	}
+	
+	public static int[] getTriAngular(int n){
+		int[] data = new int[n];
+		
+		int result = 0;
+		int index = 0;
+		for(int i = 1; i <= n; i++){
+			data[index] = result;
+			result = result + i;
+			index++;
+		}
+		
+		return data;
+	}
+	
 	public static String[] genapGanjilFibonachi(int n){
 		String[] data = new String[n];
 		String[] dataChar = getChar(n);
@@ -179,14 +203,7 @@ public class DeretAngka {
 	}
 	
 	public static void main(String args[]){
-		int[] data = DeretAngka.getIncrementABC(3);
-		
-		System.out.println(Arrays.toString(data));
-		double datas = Math.pow(4, 3);
-		System.out.println((int)datas);
-		//DeretAngka.getChar(5);
-		
-		System.out.println("hasil : "+ (8/2 + 1));
+		System.out.println(getTriAngularResult(5));
 	}
 	
 }
